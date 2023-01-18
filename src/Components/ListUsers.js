@@ -3,11 +3,11 @@ import { useEffect, useState } from "react"
 
 
 const ListUsers=()=>{
-    const [users] = useState([])
+    const [users,setUsers] = useState([])
    
     useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/users')
-        .then(res => console.log(res.data))
+        .then(res => setUsers(res.data))
         .catch(error => console.log(error));
     },[])
 
@@ -15,7 +15,7 @@ const ListUsers=()=>{
         <div>
             <h2>List of Users :</h2>
             {
-                users.map(el=>`${el.id}` , <h3>{el.name}</h3>)
+                users.map(el=><h3>{el.name}</h3>)
                
             }
         </div>
